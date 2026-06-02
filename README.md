@@ -64,26 +64,6 @@ X [ m ], Y [ m ], Z [ m ], co.Mass Fraction
 
 ---
 
-## Physical Setup
-
-| Parameter | Value |
-|---|---|
-| Room size | 10 × 10 m² |
-| Spatial grid | 50 × 50 uniform grid, spacing ≈ 0.2 m |
-| Sensing height (Z) | ≈ 0.05 m |
-| Gas species | Carbon monoxide (CO) |
-| Source position | (5.0, 5.0) m (room center) |
-| Time snapshots | 100 per scenario |
-| Temporal ordering | `1.csv` → earliest; `100.csv` → most decayed |
-| Simulation tool | ANSYS Fluent (CFD) |
-
----
-
-## Temporal Structure
-
-The 100 files represent the time evolution of the plume after release. The plume is most concentrated in early snapshots and progressively disperses and decays toward snapshot 100. During a single RL training episode, the environment steps through snapshots sequentially (file index advances each time step), so the agent experiences a monotonically weakening concentration field within each episode.
-
----
 
 ## Usage
 
@@ -110,16 +90,6 @@ import numpy as np
 all_values = np.concatenate([df["conc"].values for df in all_snapshots])
 vmin, vmax = all_values.min(), all_values.max()
 normalized = (df["conc"] - vmin) / (vmax - vmin)
-```
-
----
-
-## Citation
-
-If you use this dataset, please cite the associated paper:
-
-```
-[To be filled in upon publication]
 ```
 
 ---
